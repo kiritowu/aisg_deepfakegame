@@ -13,7 +13,7 @@ export default function SchoolSelect({ onSelect }) {
           {SCHOOLS.map(school => (
             <button className="school-select-btn" key={school.id} onClick={() => onSelect(school)}>
               <span className="school-select-icon">{school.icon}</span>
-              <span className="school-select-label">{school.name}</span>
+              <span className="school-select-label">{school.name}<small style={{ display: 'block', opacity: 0.85, fontSize: '1em' }}>{school.ages}</small></span>
               <span className="school-select-arrow">›</span>
             </button>
           ))}

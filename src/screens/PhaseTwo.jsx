@@ -191,7 +191,6 @@ export default function PhaseTwo({ school, onComplete, onHome }) {
           </div>
           <div className="title-main phase-two-title">SPOT THE DEEPFAKE</div>
           <div className="phase-two-briefing">
-            <p className="phase-two-intro">Find {N} AI edits before time runs out.</p>
             <div className="phase-two-stats">
               <div className="phase-two-metric">
                 <span className="phase-two-metric-label">Found</span>

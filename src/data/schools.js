@@ -11,6 +11,7 @@ export const SCHOOLS = [
   {
     id: 'youth',
     name: 'Youth',
+    ages: '15–34 years',
     icon: '🧑',
     image: '/engineering.png',
     hotspots: [
@@ -25,6 +26,7 @@ export const SCHOOLS = [
   {
     id: 'adults',
     name: 'Adult',
+    ages: '35–64 years',
     icon: '💼',
     image: '/adults.png',
     hotspots: [
@@ -39,6 +41,7 @@ export const SCHOOLS = [
   {
     id: 'seniors',
     name: 'Senior',
+    ages: '65 years and above',
     icon: '👴',
     image: '/seniors.png',
     hotspots: [

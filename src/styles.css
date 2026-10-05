@@ -729,6 +729,12 @@
     margin-top: 4px;
   }
 
+  /* Phase One results takeaways: bigger text; beats the #screen-results .tip-item media-query sizes */
+  #screen-results .takeaways-big .tip-item {
+    font-size: 1.1rem;
+    line-height: 1.45;
+  }
+
   .tip-item {
     display: flex;
     gap: 12px;
@@ -2455,4 +2461,39 @@
     .phase-two-shell.review-mode .phase-two-metric { padding: 4px 7px !important; }
     .phase-two-shell.review-mode .phase-two-metric-label { font-size: 0.52rem !important; margin-bottom: 1px !important; }
     .phase-two-shell.review-mode .phase-two-metric-value { font-size: 0.8rem !important; }
+  }
+
+  /* Phase One, landscape: video left, context + clues right, verdict buttons in a full-width row below.
+     Last in the file + #screen-game prefix so it beats the earlier phase-one media queries. */
+  @media (min-width: 1000px) and (orientation: landscape) {
+    #screen-game .phase-one-shell {
+      width: min(1500px, 100%);
+      display: grid;
+      grid-template-columns: minmax(0, 1.6fr) minmax(340px, 1fr);
+      grid-template-areas: "top top" "video panel" "actions actions";
+      grid-template-rows: auto auto auto;
+      gap: 16px 20px;
+    }
+    #screen-game .phase-one-top { grid-area: top; }
+    #screen-game .phase-one-video-card { grid-area: video; }
+    #screen-game .phase-one-scenario-panel { grid-area: panel; }
+    #screen-game .phase-one-action-row { grid-area: actions; position: static; background: none; padding: 0; }
+    #screen-game .video-frame { height: auto; aspect-ratio: 16 / 10; }
+    #screen-game .scenario-frames { grid-template-columns: 1fr; }
+    #screen-game .scenario-frame p { font-size: 1.05rem; line-height: 1.45; }
+    #screen-game .clue-tag { display: block; font-size: 1.05rem; padding: 8px 12px; margin: 6px 0; }
+    #screen-game .verdict-btns { max-width: 760px; margin-top: 0; }
+  }
+
+  /* Phase Two answer review: bigger text. Extra .phase-two-review-panel in the selector
+     + last in file so it beats the earlier !important media-query sizes. */
+  .phase-two-shell.review-mode .phase-two-review-panel .phase-two-review-hint { font-size: 1.05rem !important; line-height: 1.5; }
+  .phase-two-shell.review-mode .phase-two-review-panel .phase-two-review-kicker { font-size: 0.8rem !important; margin-bottom: 6px; }
+  .phase-two-shell.review-mode .phase-two-review-panel .phase-two-review-title { font-size: 1.3rem !important; margin-bottom: 8px; }
+  .phase-two-shell.review-mode .phase-two-review-panel .phase-two-review-reason { font-size: 1.15rem !important; line-height: 1.5; }
+
+  /* Phase Two review, landscape: wider review panel so the board column narrows to the image (no side black bars).
+     ponytail: tuned for ~4:3 challenge images on a ~16:10 screen; other ratios may still letterbox slightly. */
+  @media (min-width: 1000px) and (orientation: landscape) {
+    .phase-two-shell.review-mode { grid-template-columns: minmax(0, 1fr) clamp(300px, 35vw, 560px); }
   }
