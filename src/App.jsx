@@ -11,6 +11,19 @@ import { armInitialLobbyMusic, primeLobbyMusic, stopLobbyMusic, stopPhaseTwoMusi
 
 const LOBBY_SCREENS = new Set(['welcome', 'schoolSelect', 'learnPhaseTwo'])
 
+// One row in Supabase `runs` per completed Phase 1 + Phase 2 run. Fire-and-forget: a failed
+// insert must never block the game. ponytail: plain fetch to the REST API, no supabase-js needed for one insert.
+function recordRun() {
+  const url = import.meta.env.VITE_SUPABASE_URL
+  const key = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY
+  if (!url || !key) return
+  fetch(`${url}/rest/v1/runs`, {
+    method: 'POST',
+    headers: { apikey: key, 'Content-Type': 'application/json' },
+    body: '{}',
+  }).catch(() => {})
+}
+
 export default function App() {
   const [screen, setScreen] = useState('welcome')
   const [showSure, setShowSure] = useState(false)
@@ -66,7 +79,7 @@ export default function App() {
         <PhaseTwo
           school={school}
           onHome={confirmHome}
-          onComplete={data => { setPhaseTwoData(data); setScreen('finalResults') }}
+          onComplete={data => { recordRun(); setPhaseTwoData(data); setScreen('finalResults') }}
         />
       )}
 
